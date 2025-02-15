@@ -37,6 +37,13 @@
 			);
 			target = CDD37D842D6063B9005B4B17 /* TipCalculator */;
 		};
+		CDD37DBF2D6073F3005B4B17 /* Exceptions for "TipCalculator" folder in "TipCalculatorTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/TipCalculator.swift,
+			);
+			target = CDD37D9A2D6063BC005B4B17 /* TipCalculatorTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +51,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CDD37DAD2D6063BC005B4B17 /* Exceptions for "TipCalculator" folder in "TipCalculator" target */,
+				CDD37DBF2D6073F3005B4B17 /* Exceptions for "TipCalculator" folder in "TipCalculatorTests" target */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";

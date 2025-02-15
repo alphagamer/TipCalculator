@@ -8,14 +8,18 @@
 import XCTest
 @testable import TipCalculator
 
-final class TipCalculatorTests: XCTestCase {
+final class when_calculating_tip_based_on_total_amount: XCTestCase {
+    
+    var tipCalculator : TipCalculator!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        tipCalculator = TipCalculator()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        tipCalculator = nil
     }
 
     func testExample() throws {
@@ -32,5 +36,23 @@ final class TipCalculatorTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func test_should_calculate_tip_successfully() {
+        let tip = try! tipCalculator.calculate(total: 100, tipPercentage: 20)
+        XCTAssertEqual(tip, 20)
+    }
+    
+    func test_should_throw_error_when_total_is_negative() {
+        XCTAssertThrowsError(try tipCalculator.calculate(total: -10, tipPercentage: 20), "") { error in
+            XCTAssertEqual(error as! TipCalculatorError, TipCalculatorError.invalidAmount)
+        }
+    }
+    
+    func test_should_throw_error_when_tip_percentage_is_not_in_range() {
+        XCTAssertThrowsError(try tipCalculator.calculate(total: 100, tipPercentage: 120), "") { error in
+            XCTAssertEqual(error as! TipCalculatorError, TipCalculatorError.invalidTipPercentage)
+        }
+    }
 
 }
+
