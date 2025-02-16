@@ -10,6 +10,11 @@ import XCTest
 final class TipCalculatorUITests: XCTestCase {
     
     var app: XCUIApplication!
+    private var contentViewPage: ContentViewPage!
+    
+    override func setUp() {
+        contentViewPage = ContentViewPage(app: app)
+    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -28,23 +33,21 @@ final class TipCalculatorUITests: XCTestCase {
     }
     
     func test_textfields_placeholders() {
-        XCTAssertEqual(app.textFields["tfBillAmount"].value as? String, "Enter Bill Amount")
-        XCTAssertEqual(app.textFields["tfTipPercent"].value as? String, "Enter Tip Percentage")
+        XCTAssertEqual(contentViewPage.tfBillAmount.value as? String, "Enter Bill Amount")
+        XCTAssertEqual(contentViewPage.tfTipPercent.value as? String, "Enter Tip Percentage")
     }
     
     func test_tip_is_displayed() {
-        let tfBillAmount = app.textFields["tfBillAmount"]
-        let tfTipPercent = app.textFields["tfTipPercent"]
         
         let lblTipAmount = app.staticTexts["lblTipAmount"]
         
         let btnCalculateTip = app.buttons["btnCalculateTip"]
         
-        tfBillAmount.tap()
-        tfBillAmount.typeText("100")
+        contentViewPage.tfBillAmount.tap()
+        contentViewPage.tfBillAmount.typeText("100")
         
-        tfTipPercent.tap()
-        tfTipPercent.typeText("20")
+        contentViewPage.tfTipPercent.tap()
+        contentViewPage.tfTipPercent.typeText("20")
         
         btnCalculateTip.tap()
         
